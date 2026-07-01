@@ -1,0 +1,5 @@
+.env
+telegram-bot-data/.env
+data/
+workspace/
+node_modules/

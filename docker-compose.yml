@@ -1,0 +1,27 @@
+services:
+  opencode:
+    image: ghcr.io/kovisun/opencode-telegram:latest
+    container_name: OpenCode
+    user: root
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/root/.local/share/opencode
+      - ./workspace:/workspace
+      - ./telegram-bot-data:/root/.config/opencode-telegram-bot
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - BUN_RUNTIME_TRANSPILER_CACHE_PATH=0
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_ALLOWED_USER_ID=${TELEGRAM_ALLOWED_USER_ID}
+      - OPENCODE_API_URL=http://127.0.0.1:3000
+      - OPENCODE_MODEL_PROVIDER=${OPENCODE_MODEL_PROVIDER}
+      - OPENCODE_MODEL_ID=${OPENCODE_MODEL_ID}
+      - BOT_LOCALE=${BOT_LOCALE}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - TELEGRAM_PROXY_URL=${TELEGRAM_PROXY_URL}
+      - TELEGRAM_FORCE_IPV4=true
